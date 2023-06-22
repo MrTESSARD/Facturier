@@ -65,5 +65,6 @@ class FormInput {
         alert("Les valeurs numériques doivent être suppérieur à 0")
         return
     }
+    
 }}
     new FormInput()

@@ -84,6 +84,5 @@ export class Datas implements HasHtmlFormat{
         <div class="h2 font-weight-light">${totalPrice.toFixed(2)} €</div>
     </div>
 </div>`;
-
     }
 }

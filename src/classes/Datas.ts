@@ -1,38 +1,39 @@
 import { HasHtmlFormat } from "../interfaces/HasHTMLFormat.js";
 
-export class Datas implements HasHtmlFormat{
-    constructor(
-        private documentType :string,
-        private firstName :string,
-        private lastName :string,
-        private address :string,
-        private country :string,
-        private town :string,
-        private zip :number,
-        private product :string,
-        private price :number,
-        private quantity :number,
-        private tva :number,
-        private date :Date,
-    ) {
-        
-        
-    }
-    private subTotal(price:number, quantity:number, tva:number):number{
-        const tvaPercent = tva/100
-        const totalTva = price*tvaPercent
-        return(price + totalTva) * quantity
-    }
-    htmlFormat(){
-        //cacluler le sous total TTC
-        const totalPrice = this.subTotal(this.price, this.quantity, this.tva)
-        return `
+export class Datas implements HasHtmlFormat {
+  constructor(
+    private documentType: string,
+    private firstName: string,
+    private lastName: string,
+    private address: string,
+    private country: string,
+    private town: string,
+    private zip: number,
+    private product: string,
+    private price: number,
+    private quantity: number,
+    private tva: number,
+    private date: Date
+  ) {}
+  private subTotal(price: number, quantity: number, tva: number): number {
+    const tvaPercent = tva / 100;
+    const totalTva = price * tvaPercent;
+    return (price + totalTva) * quantity;
+  }
+  htmlFormat() {
+    //cacluler le sous total TTC
+    const totalPrice = this.subTotal(this.price, this.quantity, this.tva);
+    return `
         <div class="row p-5">
     <div class="col-md-6">
         <h2 class="text-left">LOGO</h2>
     </div>
     <div class="col-md-6 text-right">
-        <p class="font-weight-bold mb-1"> ${this.documentType==="invoice" ? "Facture": "Devis"}<span class="font-weight-normal">N° ${Math.floor(Math.random()*100)}</span></p>
+        <p class="font-weight-bold mb-1"> ${
+          this.documentType === "invoice" ? "Facture" : "Devis"
+        }<span class="font-weight-normal">N° ${Math.floor(
+      Math.random() * 100
+    )}</span></p>
         <p class="font-weight-bold mb-1">Date <span class="font-weight-normal">${this.date.toLocaleDateString()}</span></p>
     </div>
 </div>
@@ -84,5 +85,5 @@ export class Datas implements HasHtmlFormat{
         <div class="h2 font-weight-light">${totalPrice.toFixed(2)} €</div>
     </div>
 </div>`;
-    }
+  }
 }

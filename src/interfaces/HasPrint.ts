@@ -1,0 +1,3 @@
+interface HasPrint{
+    print():void
+}

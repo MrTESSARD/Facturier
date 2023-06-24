@@ -1,4 +1,5 @@
 import { Datas } from "./Datas.js";
+import { Display } from "./Display.js";
 export class FormInput {
     form;
     type;
@@ -12,6 +13,8 @@ export class FormInput {
     price;
     quantity;
     tva;
+    docContainer;
+    hiddenDiv;
     constructor() {
         this.form = document.getElementById("form");
         this.type = document.getElementById("type");
@@ -25,6 +28,8 @@ export class FormInput {
         this.price = document.getElementById("price");
         this.quantity = document.getElementById("quantity");
         this.tva = document.getElementById("tva");
+        this.docContainer = document.getElementById("document-container");
+        this.hiddenDiv = document.getElementById("hiddenDiv");
         //Listener
         this.submitFormListener();
     }
@@ -41,7 +46,10 @@ export class FormInput {
             let docData;
             let date = new Date();
             docData = new Datas(type, firstName, lastName, address, country, town, zip, product, price, quantity, tva, date);
-            console.log(docData.htmlFormat());
+            // console.log(docData.htmlFormat());
+            let template;
+            template = new Display(this.docContainer, this.hiddenDiv);
+            template.render(docData, type);
         }
     }
     inputDatas() {

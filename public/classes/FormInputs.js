@@ -15,6 +15,7 @@ export class FormInput {
     tva;
     docContainer;
     hiddenDiv;
+    btnPrint;
     constructor() {
         this.form = document.getElementById("form");
         this.type = document.getElementById("type");
@@ -30,6 +31,7 @@ export class FormInput {
         this.tva = document.getElementById("tva");
         this.docContainer = document.getElementById("document-container");
         this.hiddenDiv = document.getElementById("hiddenDiv");
+        this.btnPrint = document.getElementById("print");
         //Listener
         this.submitFormListener();
     }

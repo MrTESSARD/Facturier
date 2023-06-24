@@ -18,6 +18,7 @@ export class FormInput {
     tva:HTMLInputElement 
     docContainer:HTMLDivElement
     hiddenDiv:HTMLDivElement
+    btnPrint:HTMLButtonElement
     
   constructor() {
       this.form = document.getElementById("form") as HTMLFormElement
@@ -35,6 +36,8 @@ export class FormInput {
 
       this.docContainer= document.getElementById("document-container") as HTMLDivElement
       this.hiddenDiv=document.getElementById("hiddenDiv") as HTMLDivElement
+
+      this.btnPrint=document.getElementById("print")as HTMLButtonElement
 
       //Listener
       this.submitFormListener()

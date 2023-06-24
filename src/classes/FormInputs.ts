@@ -59,7 +59,7 @@ export class FormInput {
             docData =new Datas(type, firstName, lastName, address, country, town, zip, product,price, quantity,tva, date)
             // console.log(docData.htmlFormat());
             let template:HasRender
-            template = new Display(this.docContainer, this.hiddenDiv)
+            template = new Display(this.docContainer, this.hiddenDiv, this.btnPrint)
             template.render(docData, type)
 
         

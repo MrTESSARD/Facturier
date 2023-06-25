@@ -18,6 +18,9 @@ export class FormInput {
     hiddenDiv;
     btnPrint;
     btnReload;
+    btnStoredInvoices;
+    btnStoredEstimates;
+    storedEl;
     constructor() {
         this.form = document.getElementById("form");
         this.type = document.getElementById("type");
@@ -33,12 +36,16 @@ export class FormInput {
         this.tva = document.getElementById("tva");
         this.docContainer = document.getElementById("document-container");
         this.hiddenDiv = document.getElementById("hiddenDiv");
+        this.storedEl = document.getElementById("stored-data");
         this.btnPrint = document.getElementById("print");
         this.btnReload = document.getElementById("reload");
+        this.btnStoredInvoices = document.getElementById("stored-invoices");
+        this.btnStoredEstimates = document.getElementById("stored-estimates");
         //Listener
         this.submitFormListener();
         this.printListener(this.btnPrint, this.docContainer);
         this.deleteListener(this.btnReload);
+        this.getStoredDocsListener();
     }
     //Listeners
     submitFormListener() {
@@ -56,6 +63,45 @@ export class FormInput {
             document.location.reload();
             window.scrollTo(0, 0);
         });
+    }
+    /**
+     * Ajoute les gestionnaires d'événements pour les boutons "Stored Invoices" et "Stored Estimates".
+     * Lorsque l'un des boutons est cliqué, la méthode getItems est appelée avec le type de document correspondant.
+     */
+    getStoredDocsListener() {
+        this.btnStoredInvoices.addEventListener("click", this.getItems.bind(this, "invoice"));
+        this.btnStoredEstimates.addEventListener("click", this.getItems.bind(this, "estimate"));
+    }
+    /**
+     * Récupère les éléments correspondant au type de document spécifié et affiche l'objet courant dans la console.
+     * @param docType Le type de document (invoices ou estimates).
+     */
+    getItems(docType) {
+        if (this.storedEl.hasChildNodes()) {
+            this.storedEl.innerHTML = "";
+        }
+        if (localStorage.getItem(docType)) {
+            let array;
+            array = localStorage.getItem(docType);
+            if (array !== null && array.length > 2) {
+                let arrayData;
+                arrayData = JSON.parse(array);
+                arrayData.map((doc) => {
+                    let card = document.createElement('div');
+                    let cardBody = document.createElement('div');
+                    let cardClasses = ["card", "mt-5"];
+                    let cardBodyClasses = "card-body";
+                    card.classList.add(...cardClasses);
+                    cardBody.classList.add(cardBodyClasses);
+                    cardBody.innerHTML = doc;
+                    card.append(cardBody);
+                    this.storedEl.append(card);
+                });
+            }
+            else {
+                this.storedEl.innerHTML = '<div class="p-5">Aucune data disponible !</div>';
+            }
+        }
     }
     handleFormSubmit(e) {
         e.preventDefault();

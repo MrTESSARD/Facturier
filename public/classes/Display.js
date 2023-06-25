@@ -1,3 +1,4 @@
+import { Storage } from "./Storage.js";
 export class Display {
     container;
     hiddenDiv;
@@ -12,6 +13,7 @@ export class Display {
     render(docObj, docType) {
         const htmlString = docObj.htmlFormat();
         this.container.innerHTML = htmlString;
+        new Storage(docType, htmlString);
         if (docType === 'invoice') {
             this.btnPrint.innerHTML = "Imprimer la facture";
         }

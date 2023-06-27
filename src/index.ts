@@ -3,3 +3,4 @@ import { Storage } from "./classes/Storage";
     new FormInput()
     // const storage = new Storage()
     Storage.checkLocalStorage()
+    console.log("testd");

@@ -5,6 +5,13 @@ module.exports = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "public"),
   },
+  devServer:{
+    static: {
+      directory: path.resolve(__dirname, 'public'), // Chemin vers le répertoire du contenu statique
+    },
+    compress:true,
+    port:8081,
+  },
   devtool:"inline-source-map",
   module: {
     rules: [

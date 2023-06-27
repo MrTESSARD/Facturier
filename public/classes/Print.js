@@ -9,3 +9,4 @@ export class Print {
         document.location.reload();
     }
 }
+//# sourceMappingURL=Print.js.map

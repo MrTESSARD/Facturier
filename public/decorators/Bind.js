@@ -8,3 +8,4 @@ export function bind(target, name, descriptor) {
     };
     return newDescriptor;
 }
+//# sourceMappingURL=Bind.js.map

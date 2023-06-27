@@ -24,3 +24,4 @@ export class Display {
         this.formContainer.innerHTML = "";
     }
 }
+//# sourceMappingURL=Display.js.map

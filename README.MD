@@ -70,7 +70,30 @@ npm i webpack webpack-cli typescript ts-loader --save-dev:
 
 ```terminal
 ./node_modules/.bin/webpack --mode development: 
+//ou
+npm run build //avec facturier
+//ou
+npx webpack --mode=production //sans facturier
 ```
 > Cette commande exécute le binaire webpack situé dans le répertoire node_modules de votre projet. Elle utilise le mode de développement (--mode development) pour exécuter Webpack avec des optimisations spécifiques pour le développement. Cette commande lance le processus de compilation et de création des bundles de votre application en fonction de la configuration définie dans le fichier webpack.config.js, générant ainsi les fichiers de sortie nécessaires pour votre application.
 
 
+## 91. Webpack SourceMap Debug
+Pour indiquer à Webpack de générer des sourcemaps en ligne pour le débogage du code dans le navigateur.
+
+Les sourcemaps sont des fichiers qui permettent de relier le code source original (par exemple, des fichiers TypeScript ou des fichiers JavaScript non minifiés) au code transformé et minifié utilisé dans l'application. Ils fournissent une correspondance ligne par ligne entre le code exécuté dans le navigateur et le code source d'origine, facilitant ainsi le débogage.
+
+Avec devtool: "inline-source-map", les sourcemaps sont intégrés directement dans le bundle JavaScript généré par Webpack. Cela signifie que le navigateur télécharge le bundle JavaScript avec les sourcemaps inclus, permettant au débogueur du navigateur de relier automatiquement le code exécuté au code source d'origine lors du débogage.
+
+L'utilisation de sourcemaps en ligne est pratique en développement, car elle évite d'avoir à charger des fichiers de sourcemaps séparés lors du débogage. Cependant, il peut augmenter légèrement la taille du bundle JavaScript généré.
+
+Il est important de noter que l'utilisation de sourcemaps en ligne est recommandée uniquement en mode développement, car cela peut exposer votre code source d'origine. En mode production, il est généralement préférable de générer des fichiers de sourcemaps externes pour des raisons de performance et de sécurité.
+
+En résumé, devtool: "inline-source-map" indique à Webpack de générer des sourcemaps en ligne pour faciliter le débogage du code dans le navigateur pendant le développement. 
+
+facturier
+ajouter dans tsconfig.json
+     "sourceMap": true,                                /* Create source map files for emitted JavaScript files. */
+
+ajouter dans webpack.config.js
+devtool:"inline-source-map",

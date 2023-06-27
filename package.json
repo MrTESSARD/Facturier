@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve  --mode development --open"
+    "start": "webpack serve  --mode development --open",
+    "build": "webpack --config webpack.config.prod.js --mode production"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +14,7 @@
     "lite-server": "^2.6.1"
   },
   "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
     "ts-loader": "^9.4.3",
     "typescript": "^5.1.3",
     "webpack": "^5.88.0",

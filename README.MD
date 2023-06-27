@@ -168,4 +168,5 @@ npx webpack serve --mode=development
 
 > Cela facilite grandement le processus de développement en offrant une expérience de développement fluide et réactive.
 
-
+## 93. Webpack en Production
+npm i --save-dev clean-webpack-plugin  

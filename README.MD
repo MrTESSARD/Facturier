@@ -169,7 +169,7 @@ npx webpack serve --mode=development
 > Cela facilite grandement le processus de développement en offrant une expérience de développement fluide et réactive.
 
 ## 93. Webpack en Production
-npm i --save-dev clean-webpack-plugin  
+npm i --save-dev clean-webpack-plugin  //Clean plugin for webpack
 ```javascript
     //ajouter
     "build": "webpack --config webpack.config.prod.js --mode production"
@@ -189,3 +189,6 @@ npm i --save-dev clean-webpack-plugin
 
 ```
 
+## 94. Paramétrer le plugin CleanWebpackPlugin et Type definitions
+
+npm install @types/nom-du-module

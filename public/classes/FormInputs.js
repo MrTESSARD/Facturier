@@ -1,3 +1,10 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+import { bind } from "../decorators/Bind.js";
 import { Datas } from "./Datas.js";
 import { Display } from "./Display.js";
 import { Print } from "./Print.js";
@@ -49,7 +56,8 @@ export class FormInput {
     }
     //Listeners
     submitFormListener() {
-        this.form.addEventListener("submit", this.handleFormSubmit.bind(this));
+        //   this.form.addEventListener("submit", this.handleFormSubmit.bind(this))//pour avoir  console.log(this);//FormInput
+        this.form.addEventListener("submit", this.handleFormSubmit); //pour retourner le formulaire
     }
     printListener(btn, docContainer) {
         btn.addEventListener("click", () => {
@@ -69,14 +77,17 @@ export class FormInput {
      * Lorsque l'un des boutons est cliqué, la méthode getItems est appelée avec le type de document correspondant.
      */
     getStoredDocsListener() {
-        this.btnStoredInvoices.addEventListener("click", this.getItems.bind(this, "invoice"));
-        this.btnStoredEstimates.addEventListener("click", this.getItems.bind(this, "estimate"));
+        // this.btnStoredInvoices.addEventListener("click", this.getItems.bind(this, "invoice"));
+        // this.btnStoredEstimates.addEventListener("click", this.getItems.bind(this, "estimate"));
+        this.btnStoredInvoices.addEventListener("click", () => this.getItems("invoice"));
+        this.btnStoredEstimates.addEventListener("click", () => this.getItems("estimate"));
     }
     /**
      * Récupère les éléments correspondant au type de document spécifié et affiche l'objet courant dans la console.
      * @param docType Le type de document (invoices ou estimates).
      */
     getItems(docType) {
+        // console.log(this);//FormInput
         if (this.storedEl.hasChildNodes()) {
             this.storedEl.innerHTML = "";
         }
@@ -105,6 +116,7 @@ export class FormInput {
     }
     handleFormSubmit(e) {
         e.preventDefault();
+        console.log(this); //FormInput
         const inputs = this.inputDatas(); //Array , Undefined
         if (Array.isArray(inputs)) {
             const [type, firstName, lastName, address, country, town, zip, product, price, quantity, tva] = inputs;
@@ -139,3 +151,6 @@ export class FormInput {
         }
     }
 }
+__decorate([
+    bind
+], FormInput.prototype, "handleFormSubmit", null);

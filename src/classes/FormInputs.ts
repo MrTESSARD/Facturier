@@ -1,3 +1,4 @@
+import { bind } from "../decorators/Bind.js"
 import { HasHtmlFormat } from "../interfaces/HasHTMLFormat.js"
 import { HasRender } from "../interfaces/hasRender.js"
 import { Datas } from "./Datas.js"
@@ -59,7 +60,8 @@ export class FormInput {
   }
   //Listeners
   private submitFormListener():void{
-      this.form.addEventListener("submit", this.handleFormSubmit.bind(this))
+    //   this.form.addEventListener("submit", this.handleFormSubmit.bind(this))//pour avoir  console.log(this);//FormInput
+      this.form.addEventListener("submit", this.handleFormSubmit)//pour retourner le formulaire
   }
   private printListener(btn:HTMLButtonElement, docContainer:HTMLDivElement){
     btn.addEventListener("click", ()=>{
@@ -79,8 +81,10 @@ export class FormInput {
  * Lorsque l'un des boutons est cliqué, la méthode getItems est appelée avec le type de document correspondant.
  */
 private getStoredDocsListener(): void {
-    this.btnStoredInvoices.addEventListener("click", this.getItems.bind(this, "invoice"));
-    this.btnStoredEstimates.addEventListener("click", this.getItems.bind(this, "estimate"));
+    // this.btnStoredInvoices.addEventListener("click", this.getItems.bind(this, "invoice"));
+    // this.btnStoredEstimates.addEventListener("click", this.getItems.bind(this, "estimate"));
+    this.btnStoredInvoices.addEventListener("click", ()=> this.getItems( "invoice"));
+    this.btnStoredEstimates.addEventListener("click", ()=> this.getItems( "estimate"));
 }
 
 /**
@@ -88,6 +92,7 @@ private getStoredDocsListener(): void {
  * @param docType Le type de document (invoices ou estimates).
  */
 private getItems(docType: string) {
+    // console.log(this);//FormInput
     if (this.storedEl.hasChildNodes()) {
         this.storedEl.innerHTML=""
         
@@ -122,9 +127,10 @@ private getItems(docType: string) {
         
     }
 }
-
+@bind
   private handleFormSubmit(e:Event){
       e.preventDefault()
+      console.log(this);//FormInput
       const inputs = this.inputDatas()//Array , Undefined
       if (Array.isArray(inputs)) {
           const[type, firstName, lastName, address, country, town, zip, product,price, quantity,tva]=inputs

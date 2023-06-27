@@ -170,3 +170,22 @@ npx webpack serve --mode=development
 
 ## 93. Webpack en Production
 npm i --save-dev clean-webpack-plugin  
+```javascript
+    //ajouter
+    "build": "webpack --config webpack.config.prod.js --mode production"
+    //créer
+    webpack.config.prod.js
+    //avec
+    var cleanPlugin = require("clean-webpack-plugin")
+  plugins: [new cleanPlugin.CleanWebpackPlugin()],
+  //et sans 
+  devServer:{
+    static: {
+      directory: path.resolve(__dirname, 'public'), // Chemin vers le répertoire du contenu statique
+    },
+    compress:true,
+    port:8081,
+  },
+
+```
+

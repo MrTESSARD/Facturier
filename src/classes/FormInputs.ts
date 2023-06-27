@@ -1,9 +1,9 @@
-import { bind } from "../decorators/Bind.js"
-import { HasHtmlFormat } from "../interfaces/HasHTMLFormat.js"
-import { HasRender } from "../interfaces/hasRender.js"
-import { Datas } from "./Datas.js"
-import { Display } from "./Display.js"
-import { Print } from "./Print.js"
+import { bind } from "../decorators/Bind"
+import { HasHtmlFormat } from "../interfaces/HasHTMLFormat"
+import { HasRender } from "../interfaces/hasRender"
+import { Datas } from "./Datas"
+import { Display } from "./Display"
+import { Print } from "./Print"
 
 export class FormInput {
     form: HTMLFormElement

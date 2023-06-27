@@ -1,6 +1,6 @@
-import { HasHtmlFormat } from "../interfaces/HasHTMLFormat.js";
-import { HasRender } from "../interfaces/hasRender.js";
-import { Storage } from "./Storage.js";
+import { HasHtmlFormat } from "../interfaces/HasHTMLFormat";
+import { HasRender } from "../interfaces/hasRender";
+import { Storage } from "./Storage";
 
 export class Display implements HasRender {
     formContainer:HTMLDivElement
